@@ -68,6 +68,7 @@ inline void printHelp()
     std::cout << "    -b                Memory block size in bytes used for memory allocation grouping, default 20 MB" << std::endl;
     std::cout << "    --thresh          Threshold tt for P+X for task grouping, default 30" << std::endl;
     std::cout << "    --mem-thresh      Threshold tm for P+X for memory allocation grouping, default 20" << std::endl;
+    std::cout << "    --max-clq         Size of the maximum clique to be explored" << std::endl;
     std::cout << "    -s,               Defines subgraph based approach for BK algorithm," << std::endl;
     std::cout << "                          0 - don't create subgraphs" << std::endl;
     std::cout << "                          1 - create subgraphs in the outer level of the algorithm" << std::endl;

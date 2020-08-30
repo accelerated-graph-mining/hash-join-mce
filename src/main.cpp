@@ -29,6 +29,7 @@ bool degreeOrd = false;
 bool setsMempool = false;
 int PX_threshold = 30;
 int mem_threshold = 20;
+int max_clq_size = -1;
 int subgraphBased = 0;
 unsigned int memBlockSize = 20480;
 
@@ -76,6 +77,7 @@ int main(int argc, char** argv) {
 
     if(cmdOptionExists(argv, argv+argc, "--thresh")) PX_threshold = stoi(string(getCmdOption(argv, argv + argc, "--thresh")));
     if(cmdOptionExists(argv, argv+argc, "--mem-thresh")) mem_threshold = stoi(string(getCmdOption(argv, argv + argc, "--mem-thresh")));
+    if(cmdOptionExists(argv, argv+argc, "--max-clq")) max_clq_size = stoi(string(getCmdOption(argv, argv + argc, "--max-clq")));
     if(cmdOptionExists(argv, argv+argc, "-s")) {
         subgraphBased = stoi(string(getCmdOption(argv, argv + argc, "-s")));
         if(subgraphBased > 2 || subgraphBased < 0) subgraphBased == 0;

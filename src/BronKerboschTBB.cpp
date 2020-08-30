@@ -28,6 +28,7 @@ extern bool setsMempool;
 extern bool deleteSgAfter;
 extern int PX_threshold;
 extern int mem_threshold;
+extern int max_clq_size;
 extern unsigned int memBlockSize;
 extern ofstream mem_log_stream;
 
@@ -178,6 +179,8 @@ inline bool MainBKTask::StartTask(Clique& R, SET_IMPL*& P, SET_IMPL*& X, GraphGu
         if(taskSpawnCnt == 0) NewGraph = false;
         return true;
     }
+
+    if(max_clq_size != -1 && R.size() >= max_clq_size) return true;
 
     MemChunk* sets_chunk_ptr = NULL;
     if(setsMempool) sets_chunk_ptr = sets_chunk;
