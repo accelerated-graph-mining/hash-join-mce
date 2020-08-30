@@ -24,7 +24,7 @@ make
 
 To run our code, simply execute:
 
-`./graph -f <graph_path>`
+`./mce -f <graph_path>`
 
 The most important command line options are:
 
@@ -38,5 +38,5 @@ To access other command line options use `./graph -h`
 
 An example of running our code:
 ```
-./graph -f ../data/simple.mtx -p -o
+./mce -f ../data/simple.mtx -p -o
 ```

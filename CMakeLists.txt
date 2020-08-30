@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(parallel_graph_processing)
+project(hash-join-mce)
 
 INCLUDE($ENV{TBBROOT}/cmake/TBBBuild.cmake)
 SET(TBB_DIR "$ENV{TBBROOT}/cmake")
@@ -47,12 +47,12 @@ ENDIF()
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
 SET(ALL_SRC  src/BronKerboschTBB.cpp  src/UnrolledList.cpp src/Graph.cpp src/BKTask.cpp  src/main.cpp)
 
-ADD_EXECUTABLE(graph ${ALL_SRC})
+ADD_EXECUTABLE(mce ${ALL_SRC})
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     MESSAGE(STATUS "TBB include :" ${TBB_DIR}/../include)
     FIND_PACKAGE(TBB COMPONENTS tbbmalloc tbbmalloc_proxy REQUIRED)
-    TARGET_LINK_LIBRARIES(graph tbb tbbmalloc tbbmalloc_proxy)
+    TARGET_LINK_LIBRARIES(mce tbb tbbmalloc tbbmalloc_proxy)
     INCLUDE_DIRECTORIES(${TBB_DIR}/../include)
     MESSAGE(STATUS "TBB include :" ${TBB_DIR}/../include)
 ENDIF()
