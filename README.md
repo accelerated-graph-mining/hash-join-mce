@@ -26,7 +26,9 @@ make
 
 To run our code, simply execute:
 
-`./mce -f <graph_path>`
+```
+./mce -f <graph_path>
+```
 
 The most important command line options are:
 
@@ -37,6 +39,15 @@ The most important command line options are:
 -o                Turns on memory allocation grouping, no argument
 ```
 To access other command line options use `./mce -h`
+
+Optionally, for better performance, enable using huge pages in TBB scalable allocator:
+```
+export TBB_MALLOC_USE_HUGE_PAGES=1
+```
+And interleave the memory across different NUMA nodes using `numactl` command:
+```
+numactl -i all ./mce -f <graph_path> [other_options]
+```
 
 The file containing the input graph contains the list of edges, one edge per line. Each edge is represented with the identifiers of the two vertices that it connects. 
 Optionally, the first row might contain three numbers in format `n n m`, where `n` is the number of vertices and `m` number of edges. 
@@ -56,7 +67,7 @@ The sample input graph:
 
 An example of running our code:
 ```
-./mce -f ../data/simple.mtx -p -o
+numactl -i all ./mce -f ../data/simple.mtx -p -o
 ```
 
 Which outputs the following clique histogram:
