@@ -174,6 +174,6 @@ void Graph::writeCliqueHist(tbb::combinable<Histogram>& pt_hist) {
 	});
 	cout << "# Number of maximal cliques: " << maxClqNum << "\n";
 	cout << "# Clique histogram:\n";
-	cout << "# clique_size, num_of_elems\n";
+	cout << "# clique_size, num_of_cliques\n";
 	for(auto hist : histogram)  cout << hist.first << ", " << hist.second << "\n";
 }
