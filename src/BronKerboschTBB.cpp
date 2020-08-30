@@ -34,6 +34,10 @@ extern ofstream mem_log_stream;
 
 tbb::atomic<unsigned long> BKTask::taskIdCnt = 0;
 
+inline void store_clique(Clique& R) {
+    // populate this function according to your needs if you would like the cliques found to be stored
+}
+
 inline void delete_set(SET_IMPL*& set) {
     if(set->my_chunk == NULL) {
         delete set; set = NULL;
@@ -171,6 +175,7 @@ inline bool MainBKTask::StartTask(Clique& R, SET_IMPL*& P, SET_IMPL*& X, GraphGu
                 my_hist[r_size] = 0;
 
             my_hist[r_size]++;
+            store_clique(R);
         }
 
         delete_set(P); delete_set(X);
