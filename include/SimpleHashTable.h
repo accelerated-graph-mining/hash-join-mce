@@ -221,7 +221,7 @@ inline void SimpleHashTable::insert(KeyType el) {
         __m512i elem_vec = _mm512_maskz_loadu_epi32(0xFFFF,(void*)(array + pos));
         __mmask16 el_cmp_mask = _mm512_cmpeq_epi32_mask(elem_vec, el_vec);
         __mmask16 empty_cmp_mask = _mm512_cmpeq_epi32_mask(elem_vec, empty_vec);
-        int offset = _tzcnt_u32(empty_cmp_mask);
+        int offset = __builtin_ctz(empty_cmp_mask);
         if(el_cmp_mask) return; // Element is already in the table
         if(empty_cmp_mask != 0) {
             result_pos = pos + offset; break;
