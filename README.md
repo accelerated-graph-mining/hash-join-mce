@@ -10,8 +10,14 @@ The contact email address: jov@zurich.ibm.com
 
 Prerequisites for building our code:
 
-Compiler: GCC version 7  
-Intel Threading Building Blocks library available here: https://github.com/oneapi-src/oneTBB
+Compiler: GCC version 7 or higher  
+Intel Threading Building Blocks 2020 Update 2, available here: https://github.com/oneapi-src/oneTBB/releases/tag/v2020.2
+
+Before building our code, tbb needs to be enabled:
+
+```
+source /path-to-tbb/bin/tbbvars.sh intel64 linux auto_tbbroot
+```
 
 Our code can be build using the following commands:
 
@@ -21,6 +27,12 @@ cd build
 cmake .. -DCMAKE_C_COMPILER=`which gcc` -DCMAKE_CXX_COMPILER=`which g++` -DCMAKE_BUILD_TYPE=Release
 make
 ```
+
+Our vectorized algorithm also requires the AVX512 vector instruction set, which can be verified using the following command:
+```
+lscpu | grep avx512
+```
+If the target CPU does not support the AVX512 instruction set, non-vectorized version of our algorithm can be executed by commenting out the line 17 from file `hash-join-mce/include/utils.h` and removing flags `-mavx512f` and `-xMIC-AVX512` from file `hash-join-mce/CMakeLists.txt`.
 
 ### Executing
 
