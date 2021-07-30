@@ -60,7 +60,7 @@ std::pair<UnrolledList::Bucket*, int> UnrolledList::find_element(KeyType el) {
             __mmask16 cmp_mask = _mm512_cmpeq_epi32_mask(el_vec, load_vec);
             cmp_mask = pom_offs + VECTOR_SIZE >= ELEMS_IN_BUCKET ? cmp_mask & end_mask : cmp_mask;
             if(cmp_mask) {
-                pom_offs += _tzcnt_u32(cmp_mask); found = true;break;
+                pom_offs += __builtin_ctz(cmp_mask); found = true;break;
             }
         }
         if(found) break;
