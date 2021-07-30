@@ -13,11 +13,10 @@ ADD_DEFINITIONS(-pthread) #-Wall
 
 IF(CMAKE_C_COMPILER MATCHES "clang")
     MESSAGE(STATUS "Compiling with CLANG")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx512f -mavx512cd -mavx512er -mavx512pf -march=knl -mtune=knl -stdlib=libc++")#-fopenmp
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx512f -stdlib=libc++")#-fopenmp
 ELSEIF(CMAKE_C_COMPILER MATCHES "gcc")
     MESSAGE(STATUS "Compiling with GCC")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -mavx -mavx512f -mavx512cd -mavx512er -mavx512pf \
-    -march=knl -mtune=knl -ffast-math -mveclibabi=svml -malign-data=cacheline") #-fopenmp
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx512f -ffast-math -mveclibabi=svml -malign-data=cacheline") #-fopenmp
 ELSEIF(CMAKE_C_COMPILER MATCHES "icc")
     MESSAGE(STATUS "Compiling with ICC")
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -xMIC-AVX512 -align")# -qopenmp
